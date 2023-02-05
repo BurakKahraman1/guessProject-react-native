@@ -1,20 +1,79 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from "react";
+import { StyleSheet, ImageBackground, SafeAreaView } from "react-native";
+import StartGameScreen from "./screens/StartGame";
+import { LinearGradient } from "expo-linear-gradient";
+import GameScreen from "./screens/GameScreen";
+import Colors from "./constants/colors";
+import GameOver from "./screens/GameOver";
+import { useFonts } from "expo-font";
+// import AppLoading from "expo-app-loading";
+
 
 export default function App() {
+  const [userNumber, setUserNumber] = useState();
+  const [gameIsOver,setGameIsOver]=useState(false)
+  const [guessRounds,setGuessRounds]=useState(0)
+
+  //useFonts biz boolen deger donecek ona gore yuklenene kadar loading gosterecez bunlar npm ile expo paketi olarak indirdik
+  // const [fontsLoaded]=
+  useFonts({
+    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
+  });
+  // butun sayfanin font stili expo font paketini indirip app js de renderlayarak yapabiliyoruz
+
+  // if(!fontsLoaded){
+  //   return <AppLoading/>
+  // }
+
+
+  const pickedNumber = (picked) => {
+    setUserNumber(picked);
+    setGameIsOver(false)
+  };
+
+  const GameOverHandler=(numberOfRounds)=>{
+    setGameIsOver(true);
+    setGuessRounds(numberOfRounds)
+  }
+
+  const startNewGame=()=>{
+    setUserNumber(null);
+    setGuessRounds(0)
+
+  }
+
+
+  let screen = <StartGameScreen onPickNumber={pickedNumber} />;
+  if (userNumber) {
+    screen = <GameScreen GameOverHandler={GameOverHandler} userNumber={userNumber}/>;
+  }
+
+  if(gameIsOver && userNumber){
+    screen=<GameOver userNumber={userNumber} roundsNumber={guessRounds} onStartNewGame={startNewGame}/>
+  }
+
+  
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <LinearGradient colors={["#4e0329", Colors.primary3]} style={styles.mainScreen}>
+      <ImageBackground
+        source={require("./assets/images/background.png")}
+        resizeMode="cover"
+        style={styles.mainScreen}
+        imageStyle={styles.backgroundImage}
+      >
+        <SafeAreaView style={styles.mainScreen}>{screen}</SafeAreaView>
+        {/* SafeAreaView ahizenin ekrani boldugu telefonlarda o kismi yok sayarak sayfayi ayarlar */}
+      </ImageBackground>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  mainScreen: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  },
+  backgroundImage: {
+    opacity: 0.25,
   },
 });
