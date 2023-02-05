@@ -87,4 +87,4 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-//shadowlar ios icin box shadow yapilisi elevation tek basina box shadow android icin
+
