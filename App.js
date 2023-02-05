@@ -14,17 +14,10 @@ export default function App() {
   const [gameIsOver,setGameIsOver]=useState(false)
   const [guessRounds,setGuessRounds]=useState(0)
 
-  //useFonts biz boolen deger donecek ona gore yuklenene kadar loading gosterecez bunlar npm ile expo paketi olarak indirdik
-  // const [fontsLoaded]=
   useFonts({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
     'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
   });
-  // butun sayfanin font stili expo font paketini indirip app js de renderlayarak yapabiliyoruz
-
-  // if(!fontsLoaded){
-  //   return <AppLoading/>
-  // }
 
 
   const pickedNumber = (picked) => {
@@ -63,7 +56,7 @@ export default function App() {
         imageStyle={styles.backgroundImage}
       >
         <SafeAreaView style={styles.mainScreen}>{screen}</SafeAreaView>
-        {/* SafeAreaView ahizenin ekrani boldugu telefonlarda o kismi yok sayarak sayfayi ayarlar */}
+       
       </ImageBackground>
     </LinearGradient>
   );
