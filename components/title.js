@@ -8,7 +8,7 @@ const Title=({children})=>{
 export default Title;
 
 
-// app js de yaptigimiz islemlerle olusturdugumuz font stilleri artik font family ile istedigimiz yerde kullanabilir 
+
 const styles=StyleSheet.create({
     title:{
       fontFamily:'open-sans-bold',
