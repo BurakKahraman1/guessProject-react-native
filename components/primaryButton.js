@@ -4,8 +4,7 @@ import Colors from "../constants/colors";
 const PrimaryButton = ({ children, onPressFunction }) => {
   return (
     <View style={styles.buttonOuterContainer}>
-      {/* style fonksiyon seklindede verilebilir bu sayede ios icin iki style i android icin 1 style i uyguladik 
-      ancak pressData.pressed i aldik ordan true gelirse ios icin false ise android */}
+     
       <Pressable
         style={({ pressed }) =>
           pressed
