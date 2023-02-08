@@ -76,10 +76,6 @@ const StartGameScreen = ({ onPickNumber }) => {
 
 export default StartGameScreen;
 
-// const deviceHeight = Dimensions.get("window").height;
-//ekran donuk baslarsa ona gore style i alacak duzeltince tekrardan height olcmedigi icin ise yaramayacak yataya gore ayarlar kalacak
-//useWindowDimensions bunun icin kullanilir ve componentin icinde usestate gibi tanimlanir
-// veriable i stylesheetde kullanamadigimizdan vieve array style vererek bunu da ekledik
 
 const styles = StyleSheet.create({
   forKeyboard: {
@@ -87,7 +83,7 @@ const styles = StyleSheet.create({
   },
   rootContainer: {
     flex: 1,
-    // marginTop:deviceHeight<400 ? 30 : 100,
+  
     alignItems: "center",
   },
 
@@ -113,4 +109,4 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-//shadowlar ios icin box shadow yapilisi elevation tek basina box shadow android icin
+
